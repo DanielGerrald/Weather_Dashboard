@@ -49,7 +49,7 @@ $(".btn").on("click", function(event){
 
     function UVI() {
       var queryUVI = "http://api.openweathermap.org/data/2.5/uvi?"+APIKey+"&lat="+latEl+"&lon="+longEl;
-      
+      console.log(queryUVI);
       $.ajax({
         url: queryUVI,
         method: "GET"
@@ -77,23 +77,28 @@ $(".btn").on("click", function(event){
   });
 
   function forcast() {
-  
+  $(".card-deck").html("");
     var queryFor = "http://api.openweathermap.org/data/2.5/forecast?q="+city+APIKey;
   
     $.ajax({
       url: queryFor,
       method: "GET"
     }).then(function(resp) {
-      var i = 0;
+      var i = 3;
       var d = 1;
       for (var a = 0; a < 5; a++){
         var tempC5 = resp.list[i].main.temp;
         var tempF5 = (tempC5 - 273.15) * 1.80 + 32;
-        $("#date1").text((moment().add(d, "days").format("M/D/YYYY")));
-        $(".icon2").attr("src", "http://api.openweathermap.org/img/w/"+resp.list[i].weather[0].icon+".png");
-        $("#temperature2").text("Temperature: " + tempF5.toFixed(2) + " F");
-        $("#humidity2").text("Humidity: " + resp.list[i].main.humidity + " %");
-        console.log(d,i)
+        var divEl = $("<div>").attr("class", "card bg-primary text-white");
+        $(".card-deck").append(divEl);
+        var h6El = $("<h6>").attr("class", "card-title text-center").text((moment().add(d, "days").format("M/D/YYYY")));
+        divEl.append(h6El);
+        var imgEl = $("<img>").attr("class", "mx-auto").attr("src", "http://api.openweathermap.org/img/w/"+resp.list[i].weather[0].icon+".png");
+        divEl.append(imgEl);
+        var p1El = $("<p>").attr("class", "card-text").text("Temperature: " + tempF5.toFixed(2) + " F");
+        divEl.append(p1El);
+        var p2El = $("<p>").attr("class", "card-text").text("Humidity: " + resp.list[i].main.humidity + " %");
+        divEl.append(p2El);
         i+=9;
         d++;
       }
