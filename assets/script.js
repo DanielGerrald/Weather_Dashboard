@@ -100,7 +100,7 @@ $(".card-deck").html("");
             $(".card-deck").append(divEl);
             var h6El = $("<h6>").attr("class", "card-title text-center mt-2").text((moment().add(d, "days").format("M/D/YYYY")));
             divEl.append(h6El);
-            var imgEl = $("<img>").attr("class", "mx-auto").attr("src", "http://api.openweathermap.org/img/w/"+ curr.weather[0].icon+".png");
+            var imgEl = $("<img>").attr("class", "mx-auto").attr("src", "https://api.openweathermap.org/img/w/"+ curr.weather[0].icon+".png");
             divEl.append(imgEl);
             var p1El = $("<p>").attr("class", "card-text ml-2").text("Temp: " + tempF5.toFixed(2) + " F");
             divEl.append(p1El);
