@@ -41,7 +41,7 @@ $(".btn").on("click", function getWeather(event){
   }).then(function (response) {
     var tempC = response.main.temp;
     var tempF = (tempC - 273.15) * 1.80 + 32;
-    var iconVar = "http://api.openweathermap.org/img/w/" + response.weather[0].icon +".png";
+    var iconVar = "https://api.openweathermap.org/img/w/" + response.weather[0].icon +".png";
     longEl = response.coord.lon;
     latEl = response.coord.lat;
     $("#temperature").text("Temperature: " + tempF.toFixed(2) + " F");
