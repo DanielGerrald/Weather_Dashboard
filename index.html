@@ -14,12 +14,17 @@
           </nav>
           <div class="container-fluid">
               <div class="row">
-                  <div class="col-3 bg-light">
+                  <div class="col-xs-12 col-sm-9 col-m-6 col-lg-3 bg-light">
                       <label for="Search"class="ml-3">Search for a City:</label>
-                      <form class="form-inline">
-                          <input type="search" class="form-control ml-3" id="search" aria-label="Search" aria-describedby="basic-addon2">
-                          <div class="input-group-append">
-                            <button class="btn btn-primary mr-3" type="submit"><i class="fa fa-search"></i></button>
+                      <form class="form">
+                          <div class="row input-group">
+                              <input type="search" class="form-control ml-3" id="search" aria-label="Search" aria-describedby="basic-addon2">
+                              <span class="input-group-btn">
+                                  <button class="btn btn-primary mr-3" type="submit"><i class="fa fa-search"></i></button>
+                              </span>
+                             
+                              <div class="">
+                              </div>
                           </div>
                           <div class="card mt-2" style="width: 18rem;" id="search-city">
                             <div class="button-group list-group-flush">
@@ -27,7 +32,7 @@
                           </div>
                       </form>
                   </div>
-                  <div class="col-9">
+                  <div class="col-11 col-lg-9">
                       <section class="row ml-4 mt-4 d-none">
                           <div class="card col-12">
                               <div class="card-body">
