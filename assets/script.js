@@ -41,7 +41,7 @@ $(".btn").on("click", function getWeather(event){
   }).then(function (response) {
     var tempC = response.main.temp;
     var tempF = (tempC - 273.15) * 1.80 + 32;
-    var iconVar = "https://api.openweathermap.org/img/w/" + response.weather[0].icon +".png";
+    var iconVar = "http://api.openweathermap.org/img/w/" + response.weather[0].icon +".png";
     longEl = response.coord.lon;
     latEl = response.coord.lat;
     $("#temperature").text("Temperature: " + tempF.toFixed(2) + " F");
@@ -57,7 +57,7 @@ $(".btn").on("click", function getWeather(event){
 
 
 function UVI(longEl, latEl) {
-  var queryUVI = "https://api.openweathermap.org/data/2.5/uvi?"+APIKey+"&lat="+latEl+"&lon="+longEl;
+  var queryUVI = "http://api.openweathermap.org/data/2.5/uvi?"+APIKey+"&lat="+latEl+"&lon="+longEl;
   $.ajax({
     url: queryUVI,
     method: "GET"
@@ -84,7 +84,7 @@ function UVI(longEl, latEl) {
 
 function forcast(city) {
 $(".card-deck").html("");
-  var queryFor = "https://api.openweathermap.org/data/2.5/forecast?q="+city+APIKey;
+  var queryFor = "http://api.openweathermap.org/data/2.5/forecast?q="+city+APIKey;
 
   $.ajax({
     url: queryFor,
