@@ -1,15 +1,17 @@
 
 var APIKey = "&appid=d53e4da083eaaef89fa9b69a40dc5d8f";
 var cityHist = [];
-
+var city;
 var storeCityHist = JSON.parse(localStorage.getItem("cityHist"));
+
 if (storeCityHist !== null){
-  cityHist = storeCityHist;
+  cityHist = storeCityHist.slice(Math.max(storeCityHist.length - 5, 0));
   renderCityHist();
 };
 
 function renderCityHist() {
-  $("#search-city").html("")
+  $("#search-city").html("");
+  $("#search-city").attr("class", "card mt-2");
   for (var i = 0; i < cityHist.length; i++) {
     var oldCity = cityHist[i];
     var button = $("<button>");
@@ -20,21 +22,31 @@ function renderCityHist() {
   }
 };
 
-$("#search-city").on("click", "past",function(){
-  getWeather($(this).attr("data-name"));
+$(".btn").on("click", function(event){
+  event.preventDefault();
+  city = $("#search").val();
+  getWeather()
 });
 
-$(".btn").on("click", function getWeather(event){
+$("#search-city").on("click",function(event){
   event.preventDefault();
-  var city = $("#search").val();
-  $("section").attr("class","row ml-4 mt-4")
+  if(event.target.matches("button")) {
+    city = event.target.textContent;
+  }
+  getWeather();
+});
+
+function getWeather(){
+  $("#search").val("");
   if (city === "") {
     return;
   };
-  $("#search").val("");
+  $("section").attr("class","row ml-4 mt-4");
   cityHist.push(city);
 
   var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + ",us" + APIKey;
+  console.log(queryURL);
+
   $.ajax({
     url: queryURL,
     method: "GET"
@@ -49,15 +61,17 @@ $(".btn").on("click", function getWeather(event){
     $("#humidity").text("Humidity: " + response.main.humidity + " %");
     $(".City").text(response.name +" "+ (moment().format("(M/D/YYYY)")));
     $(".icon1").attr("src", iconVar);
-
+  
     UVI(longEl, latEl);
-    forcast(city);
+    forcast(longEl, latEl);
   });
-});
+};
 
 
 function UVI(longEl, latEl) {
   var queryUVI = "https://api.openweathermap.org/data/2.5/uvi?"+APIKey+"&lat="+latEl+"&lon="+longEl;
+  console.log(queryUVI);
+  
   $.ajax({
     url: queryUVI,
     method: "GET"
@@ -82,9 +96,10 @@ function UVI(longEl, latEl) {
   })
 };
 
-function forcast(city) {
+function forcast(longEl, latEl) {
 $(".card-deck").html("");
-  var queryFor = "https://api.openweathermap.org/data/2.5/forecast?q="+city+APIKey;
+  var queryFor = "https://api.openweathermap.org/data/2.5/forecast?lat="+latEl+"&lon="+longEl+APIKey;
+  console.log(queryFor)
 
   $.ajax({
     url: queryFor,
@@ -93,7 +108,7 @@ $(".card-deck").html("");
     var d = 1;
       for (var i = 0; i < resp.list.length; i++) {
          var curr = resp.list[i]
-         if(curr.dt_txt.includes("12:00")){
+         if(curr.dt_txt.includes("12:00:00")){
             var tempC5 = curr.main.temp;
             var tempF5 = (tempC5 - 273.15) * 1.80 + 32;
             var divEl = $("<div>").attr("class", "card bg-primary text-white");
