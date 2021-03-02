@@ -1,15 +1,15 @@
-html, body{
- 
-    color: black;
-    background-image: url("assets/weather.jpg");
-    background-color: #cccccc;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
+html,
+body {
+  min-height: 100%;
+  color: black;
+  background-image: url("assets/weather.jpg");
+  background-color: #cccccc;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
-  #cityList,.card{
-    background-color: rgba(0,0,0,0)
-  }
-
- 
+#cityList,
+.card {
+  background-color: rgba(0, 0, 0, 0);
+}
