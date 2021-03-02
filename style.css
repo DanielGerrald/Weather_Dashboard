@@ -1,4 +1,5 @@
 html, body{
+ 
     color: black;
     background-image: url("assets/weather.jpg");
     background-color: #cccccc;
@@ -11,14 +12,4 @@ html, body{
     background-color: rgba(0,0,0,0)
   }
 
-  @media only screen and (max-width: 800px) {
-    body {
-        height: 100%;    
-        color: black;
-        background-image: url("assets/weather.jpg");
-        background-color: #cccccc;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-  }
+ 
