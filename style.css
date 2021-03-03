@@ -1,9 +1,9 @@
 html,
 body {
+  
   color: black;
   background-image: url("assets/weather.jpg");
   background-color: #cccccc;
-  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -13,3 +13,8 @@ body {
   background-color: rgba(0, 0, 0, 0);
 }
 
+@media only screen and (max-width: 600px) {
+  body {
+    min-height: 100%;
+  }
+}
